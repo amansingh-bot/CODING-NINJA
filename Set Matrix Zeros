@@ -1,0 +1,30 @@
+import java.io.*;
+
+import java.util.* ;
+
+ 
+
+public class Solution {
+
+public static void setZeros(int matrix[][]) {
+int c = matrix[0].length;
+ArrayList<String> arr = new ArrayList<>();
+int r = matrix.length;
+for(int i=0;i<r;i++) {
+for(int j=0;j<c;j++) {
+if(matrix[i][j]==0) {
+arr.add(Integer.toString(i)+"+"+Integer.toString(j));
+}
+}
+}
+int sz = arr.size();
+for(int i =0;i<sz;i++) {
+String s = arr.get(i);
+int pos = s.indexOf('+');
+for(int j=0;j<c;j++)
+matrix[Integer.parseInt(s.substring(0,pos))][j] = 0;
+for(int j=0;j<r;j++)
+matrix[j][Integer.parseInt(s.substring(pos+1,s.length()))] = 0;
+}
+}
+}
