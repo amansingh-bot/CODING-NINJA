@@ -1,0 +1,21 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	public static long sumOrProduct(int n, int q) {
+        long sum = 0;
+        long product = 1;
+        for (int i = 1; i <= n; i++) {
+            sum += i;
+        }
+        for (int i = 1; i <= n; i++) {
+            product *= i;
+            product %= 1000000007;
+        }
+        if (q != 2) {
+            return sum;
+        } else {
+            return product;
+        }
+    }
+}
