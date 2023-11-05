@@ -1,0 +1,36 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.Stack;
+
+public class Solution {
+	public static int maxSum(Stack<Integer> stk1, Stack<Integer> stk2, Stack<Integer> stk3) {
+		int sum1=0;
+		for(int i=0;i<stk1.size();i++){
+			sum1+=stk1.get(i);
+		}
+		int sum2=0;
+		for(int i=0;i<stk2.size();i++){
+			sum2+=stk2.get(i);
+		}
+		int sum3=0;
+		for(int i=0;i<stk3.size();i++){
+			sum3+=stk3.get(i);
+		}
+		int min = Math.min(sum3,Math.min(sum1, sum2));
+		while(sum1!=sum3 || sum2!=sum3){
+			if(sum1!=min){
+				sum1=sum1-stk1.pop();
+				 min = Math.min(sum3,Math.min(sum1, sum2));
+			}
+			if(sum2!=min){
+				sum2=sum2-stk2.pop();
+				 min = Math.min(sum3,Math.min(sum1, sum2));
+			}
+			if(sum3!=min){
+				sum3=sum3-stk3.pop();
+				 min = Math.min(sum3,Math.min(sum1, sum2));
+			}
+		}
+		return min;
+	}
+}
