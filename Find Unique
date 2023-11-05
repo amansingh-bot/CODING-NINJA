@@ -1,0 +1,26 @@
+import java.util.*;
+public class Solution{  
+    public static int findUnique(int[] arr){
+    HashMap<Integer, Integer> map = new HashMap<>();
+    for(int x : arr)
+    {
+      if(map.containsKey(x))
+      {
+        map.put(x, map.get(x) + 1);
+      }
+      else
+      {
+        map.put(x, 1);
+      }
+    }
+    int y = 0;
+    for(int e : map.keySet())
+    {
+      if(map.get(e) == 1)
+      {
+        y = e;
+      }
+    }
+    return y;
+    }
+}
