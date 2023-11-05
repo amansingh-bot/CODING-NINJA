@@ -1,0 +1,13 @@
+import java.util.*;
+public class Solution {
+
+    public static int findDuplicate(ArrayList<Integer> arr) {
+        HashSet<Integer> uniqueElements = new HashSet<>();
+        for (Integer element : arr) {
+            if (!uniqueElements.add(element)) {
+               return element;
+            }
+        }
+        return -1;
+    }
+}
