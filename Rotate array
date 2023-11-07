@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+
+ 
+
+public class Solution {
+
+    public static ArrayList<Integer> rotateArray(ArrayList<Integer> arr, int k)
+
+    {
+
+        // Write your code here.
+
+        reverse(arr,0,k-1);
+
+        reverse(arr,k,arr.size()-1);
+
+        reverse(arr, 0,arr.size()-1);
+
+        return arr;
+
+    }
+
+    public static void reverse(ArrayList<Integer> arr,int i,int j){
+
+        while(i<j){
+
+            Integer ref = arr.get(i);
+
+            arr.set(i,arr.get(j));
+
+            arr.set(j,ref);
+
+            i++;
+
+            j--;
+
+        }
+
+    }
+
+}
