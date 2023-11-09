@@ -1,0 +1,24 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static boolean findInMatrix(int x, ArrayList<ArrayList<Integer>> arr){
+
+        int r=0, c=arr.get(0).size()-1;
+
+        while(r<arr.size() && c>=0){
+
+            if(arr.get(r).get(c) == x) return true;
+
+            if(arr.get(r).get(c) < x) r++;
+
+            else c--; 
+
+        }
+
+        return false;
+
+    }
+}
