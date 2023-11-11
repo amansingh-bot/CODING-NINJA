@@ -1,0 +1,32 @@
+import java.util.* ;
+
+import java.io.*; 
+public class Solution {
+	public static long houseRobber(int[] valueInHouse) {
+		// Write your code here. 	
+		long n = valueInHouse.length;
+		if(n == 1) return valueInHouse[0];
+		
+		ArrayList<Integer> arr1 = new ArrayList<>();
+		ArrayList<Integer> arr2 = new ArrayList<>();
+
+		for(int i = 0; i < n; i++){
+			if(i != 0) arr1.add(valueInHouse[i]);
+			if(i != n-1) arr2.add(valueInHouse[i]);
+		}
+		return Math.max(helperRobber(arr1), helperRobber(arr2));
+	}	
+
+	public static long helperRobber(ArrayList<Integer> valueInHouse){
+		long prev = valueInHouse.get(0);
+		long prev2 = 0;
+
+		for(int i = 1; i < valueInHouse.size(); i++){
+			long cur = Math.max(valueInHouse.get(i) + prev2, prev);
+			prev2 = prev;
+			prev = cur;
+		}
+
+		return prev;
+	}
+}
