@@ -1,0 +1,34 @@
+public class Solution {
+    public static int[] findArraySum(int[] a, int n, int[] b, int m) {
+        int sum = 0, sums = 0, mul = 1, muls = 1;
+
+        for (int i = n - 1; i >= 0; i--) {
+            sum += a[i] * mul;
+            mul *= 10;
+        }
+
+        for (int j = m - 1; j >= 0; j--) {
+            sums += b[j] * muls;
+            muls *= 10;
+        }
+
+		int res = sum + sums;
+		int len = 0; 
+		int temp = res;
+		while (temp>0){
+			len ++;
+			temp = temp/10;
+		}
+        int[] arr = new int[len];
+		int j = len -1;
+        while(res>0){
+
+			  int digit = res%10;
+			  arr[j] = digit;
+			  res = res/10;
+			  j--;
+		}
+
+		return arr;
+    }
+}
