@@ -1,0 +1,51 @@
+import java.util.* ;
+
+import java.io.*; 
+
+public class Solution {
+
+    public static int flipBits(int[] arr,int n) {
+
+        //Write your code here
+
+        int[] flipped = new int[n];
+
+        int ones=0;
+
+        for(int i=0;i<n;i++){
+
+            if(arr[i]==1){
+
+                flipped[i]=-1;
+
+                ones++;
+
+            }
+
+            else{
+
+                flipped[i]=1;
+
+            }
+
+        }
+
+        int curr =0;
+
+        int max =0;
+
+        for(int i=0;i<n;i++){
+
+            curr +=flipped[i];
+
+            max = Math.max(curr, max);
+
+            if(curr<0) curr=0;
+
+        }
+
+        return max+ones;
+
+    }
+
+}
