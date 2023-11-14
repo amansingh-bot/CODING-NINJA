@@ -1,0 +1,271 @@
+import java.util.* ;
+
+import java.io.*;
+
+class LinkedListNode{
+
+int data;
+
+LinkedListNode next;
+
+LinkedListNode prev;
+
+LinkedListNode(int data){
+
+this.data=data;
+
+next=null;
+
+prev=null;
+
+}
+
+}
+
+public class Deque
+
+{
+
+// Initialize your data structure.
+
+LinkedListNode start;
+
+LinkedListNode tail;
+
+int Maxsize;
+
+int size;
+
+public Deque(int n)
+
+{
+
+start=new LinkedListNode(-1);
+
+tail=new LinkedListNode(-1);
+
+start.next=tail;
+
+tail.prev=start;
+
+size=0;
+
+Maxsize=n;
+
+// Write your code here.
+
+}
+
+ 
+
+// Pushes 'X' in the front of the deque. Returns true if it gets pushed into the deque, and false otherwise.
+
+public boolean pushFront(int x)
+
+{
+
+// Write your code here.
+
+if(size==Maxsize){
+
+return false;
+
+}
+
+LinkedListNode temp=new LinkedListNode(x);
+
+LinkedListNode startnext=start.next;
+
+start.next=temp;
+
+temp.prev=start;
+
+temp.next=startnext;
+
+startnext.prev=temp;
+
+size++;
+
+return true;
+
+}
+
+ 
+
+// Pushes 'X' in the back of the deque. Returns true if it gets pushed into the deque, and false otherwise.
+
+public boolean pushRear(int x)
+
+{
+
+// Write your code here.
+
+if(size==Maxsize){
+
+return false;
+
+}
+
+LinkedListNode temp=new LinkedListNode(x);
+
+LinkedListNode tailprev=tail.prev;
+
+tail.prev=temp;
+
+temp.next=tail;
+
+temp.prev=tailprev;
+
+tailprev.next=temp;
+
+size++;
+
+return true;
+
+}
+
+ 
+
+// Pops an element from the front of the deque. Returns -1 if the deque is empty, otherwise returns the popped element.
+
+public int popFront()
+
+{
+
+// Write your code here.
+
+if(size==0){
+
+return -1;
+
+}
+
+int nodeData=start.next.data;
+
+LinkedListNode temp=start.next;
+
+start.next=temp.next;
+
+temp.next.prev=start;
+
+size--;
+
+return nodeData;
+
+}
+
+ 
+
+// Pops an element from the back of the deque. Returns -1 if the deque is empty, otherwise returns the popped element.
+
+public int popRear()
+
+{
+
+// Write your code here.
+
+if(size==0){
+
+return -1;
+
+}
+
+int nodeData=tail.prev.data;
+
+LinkedListNode temp=tail.prev;
+
+temp.prev.next=tail;
+
+tail.prev=temp.prev;
+
+size--;
+
+return nodeData;
+
+}
+
+ 
+
+// Returns the first element of the deque. If the deque is empty, it returns -1.
+
+public int getFront()
+
+{
+
+// Write your code here.
+
+if(size==0){
+
+return -1;
+
+}
+
+int nodeData=start.next.data;
+
+return nodeData;
+
+}
+
+ 
+
+// Returns the last element of the deque. If the deque is empty, it returns -1.
+
+public int getRear()
+
+{
+
+// Write your code here.
+
+if(size==0){
+
+return -1;
+
+}
+
+int nodeData=tail.prev.data;
+
+return nodeData;
+
+}
+
+ 
+
+// Returns true if the deque is empty. Otherwise returns false.
+
+public boolean isEmpty()
+
+{
+
+// Write your code here.
+
+if(size==0){
+
+return true;
+
+}
+
+return false;
+
+}
+
+ 
+
+// Returns true if the deque is full. Otherwise returns false.
+
+public boolean isFull()
+
+{
+
+// Write your code here.
+
+if(size==Maxsize){
+
+return true;
+
+}
+
+return false;
+
+}
+
+}
