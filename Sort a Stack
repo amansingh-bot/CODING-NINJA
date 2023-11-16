@@ -1,0 +1,37 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	public static void sortStack(Stack<Integer> stack) {
+		// Write your code here.
+		  Stack<Integer> temp = new Stack<>();
+
+    if(stack.isEmpty()) return;
+
+    int top = stack.pop();
+
+    sortStack(stack);
+
+    if (stack.isEmpty()) {
+
+        stack.push(top);
+
+    }
+
+    else{
+
+        while (!stack.isEmpty() && stack.peek() > top) {
+
+        temp.push(stack.pop());
+
+        }
+
+        stack.push(top);
+
+        while (!temp.isEmpty()) {
+
+            stack.push(temp.pop());
+		}
+	}
+	}
+}
