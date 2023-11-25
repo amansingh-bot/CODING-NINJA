@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+ 
+
+public class Solution {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int num = sc.nextInt();
+
+        int facto = 1;  // Initialize factorial to 1
+
+        for (int i = 1; i <= num; i++) {
+
+            facto *= i;
+
+        }
+
+        System.out.println(facto);
+
+    }
+
+}
