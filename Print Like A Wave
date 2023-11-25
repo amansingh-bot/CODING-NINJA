@@ -1,0 +1,23 @@
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+	 public static int[] wavePrint(int arr[][], int nRows, int mCols) {
+        int[] ans = new int[nRows * mCols]; // Initialize the result array with the correct size
+        int count = 0;
+
+        for (int i = 0; i < mCols; i++) {
+            if (i % 2 == 0) { // Move downwards for even columns
+                for (int j = 0; j < nRows; j++) {
+                    ans[count++] = arr[j][i];
+                }
+            } else { // Move upwards for odd columns
+                for (int j = nRows - 1; j >= 0; j--) {
+                    ans[count++] = arr[j][i];
+                }
+            }
+        }
+
+        return ans;
+    }
+}
