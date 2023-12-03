@@ -1,0 +1,45 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	public static int paintTheFence(ArrayList<ArrayList<Integer>> ranges, int n, int q) {
+		int sections[] = new int[n+1];
+        int maxPaintedWall = 0;
+        for(int i=0;i<q;i++){
+            int leftRange = (ranges.get(i)).get(0);
+            int rightRange = (ranges.get(i)).get(1);
+            for(int j=leftRange;j<=rightRange;j++){
+                  sections[j]++;
+            }
+        }
+        
+        for(int i=0;i<q-1;i++){
+            int leftRangeOne = (ranges.get(i)).get(0);
+            int rightRangeOne = (ranges.get(i)).get(1);
+            for(int j=leftRangeOne;j<=rightRangeOne;j++){
+                  sections[j]--;
+            }
+            for(int j=i+1;j<q;j++){
+                int paintedWall = 0;
+                int leftRangeTwo = (ranges.get(j)).get(0);
+                int rightRangeTwo = (ranges.get(j)).get(1);
+                for(int k=leftRangeTwo;k<=rightRangeTwo;k++){
+                      sections[k]--;
+                 }
+                for(int k=1;k<=n;k++){
+                    if(sections[k]>0){
+                     paintedWall++;   
+                    }
+                }
+                for(int k=leftRangeTwo;k<=rightRangeTwo;k++){
+                      sections[k]++;
+                }
+                maxPaintedWall = Math.max(maxPaintedWall,paintedWall);
+            }
+            for(int j=leftRangeOne;j<=rightRangeOne;j++){
+                  sections[j]++;
+            }
+        }
+        return maxPaintedWall;
+	}
+}
