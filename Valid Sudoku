@@ -1,0 +1,101 @@
+public class Solution {
+
+ 
+
+    public static boolean isItSudoku(int matrix[][]) {
+
+        return sol(matrix, 0, 0, matrix.length - 1, matrix.length - 1);
+
+    }
+
+ 
+
+    public static boolean sol(int matrix[][], int cr, int cc, int er, int ec) {
+
+        if (cr > er) {
+
+            return true;
+
+        }
+
+        if (cc > ec) {
+
+            return sol(matrix, cr + 1, 0, er, ec);
+
+        }
+
+        if (matrix[cr][cc] != 0) {
+
+            return sol(matrix, cr, cc + 1, er, ec);
+
+        } else {
+
+            for (int i = 1; i <= 9; i++) {
+
+                if (isPossible(matrix, cr, cc, i)) {
+
+                    matrix[cr][cc] = i;
+
+                    boolean result = sol(matrix, cr, cc, er, ec);
+
+                    if (result == true) {
+
+                        return true;
+
+                    }
+
+                    matrix[cr][cc] = 0;
+
+                }
+
+            }
+
+        }
+
+        return false;
+
+    }
+
+ 
+
+    public static boolean isPossible(int[][] matrix, int row, int col, int value) {
+
+        for (int i = 0; i < matrix.length; i++) {
+
+            if (matrix[row][i] == value)
+
+                return false;
+
+        }
+
+        for (int i = 0; i < matrix.length; i++) {
+
+            if (matrix[i][col] == value)
+
+                return false;
+
+        }
+
+        int startRow = row - row % 3;
+
+        int startCol = col - col % 3;
+
+        for (int i = startRow; i < startRow + 3; i++) {
+
+            for (int j = startCol; j < startCol + 3; j++) {
+
+                if (matrix[i][j] == value) {
+
+                    return false;
+
+                }
+
+            }
+
+        }
+
+        return true;
+
+    }
+
+}
