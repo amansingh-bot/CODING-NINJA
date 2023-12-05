@@ -1,0 +1,19 @@
+import java.util.* ;
+
+import java.io.*; 
+
+public class Rectangle { 
+
+    // Write your code here.
+
+    int length,breadth;
+
+   
+
+    public int getArea(){
+
+        return length*breadth;
+
+    }
+
+}
