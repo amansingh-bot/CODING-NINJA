@@ -1,0 +1,41 @@
+import java.io.*;
+
+import java.util.* ;
+
+ 
+
+import java.util.ArrayList;
+
+ 
+
+public class Solution{
+
+    public static int findDuplicate(ArrayList<Integer> arr, int n){
+
+        
+
+        Set<Integer> set = new HashSet<>();
+
+ 
+
+        for(Integer i : arr)
+
+        {
+
+            if(!set.contains(i))
+
+            set.add(i);
+
+            else
+
+            return i;
+
+        }
+
+return -1;
+
+    }
+
+}
+
+ 
