@@ -1,0 +1,34 @@
+public class Solution {
+    public static int divideTwoInteger(int dividend, int divisor) {
+        int quotient = 0;
+        int sign = 1;
+        if (dividend > 0 && divisor < 0 || dividend < 0 && divisor > 0) {
+            sign = -1;
+        }
+        int max = Integer.MAX_VALUE, min = Integer.MIN_VALUE;
+
+        long dd = (long) dividend;
+        long dv = (long) divisor;
+        dd = Math.abs(dd); // The java.lang.Math.abs() returns the absolute value of a given argument. If
+                           // the argument is not negative, the argument is returned
+        dv = Math.abs(dv);
+        while (dd >= dv) {
+            int shift = 0;
+            while (dd >= (dv << shift)) {
+                shift++;
+            }
+            quotient += (long) 1l << (shift - 1);
+            dd -= dv << (shift - 1);
+        }
+
+        if (sign == 1) {
+            if (quotient > max)
+                return max;
+            return (int) quotient;
+        } else {
+            if ((~quotient) + 1 < min)
+                return min;
+            return (int) (~quotient) + 1;
+        }
+    }
+}
