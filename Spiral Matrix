@@ -1,0 +1,75 @@
+import java.util.* ;
+
+import java.io.*; 
+
+public class Solution {
+
+    public static List<Integer> spiralPathMatrix(int[][] matrix, int n, int m) {
+
+        // Write you code here.
+
+        ArrayList<Integer> arr=new ArrayList<Integer>();
+
+        int row=0 ;
+
+        int row1=matrix.length-1;
+
+        int col=0 ;
+
+        int col1=matrix[0].length-1;
+
+        while(row<=row1 && col<=col1){
+
+            for(int i=col; i<=col1; i++){
+
+                arr.add(matrix[row][i]);
+
+            }
+
+            row++;
+
+            for(int i=row; i<=row1; i++){
+
+                arr.add(matrix[i][col1]);
+
+            }
+
+            col1--;
+
+            if(row1>=row){
+
+                for(int i=col1; i>=col; i--){
+
+                    arr.add(matrix[row1][i]);
+
+                }
+
+                
+
+            }
+
+            row1--;
+
+            if(col<=col1){
+
+                for(int i=row1; i>=row; i--){
+
+                    arr.add(matrix[i][col]);
+
+ 
+
+                }
+
+                
+
+            }
+
+            col++;
+
+        }
+
+        return arr;
+
+    }
+
+}
