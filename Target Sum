@@ -1,0 +1,25 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int targetSum(int n, int target, int[] arr) {
+    	// Write your code here.
+        return combinations(n-1, target, arr);
+
+    }
+
+    private static int combinations(int index, int target, int[] arr) {
+        if (index == 0) {
+            if (arr[index] == 0 && target == 0) {
+                return 2;
+            }
+            if (arr[index] == target || target == -arr[index]) {
+                return 1;
+            }
+            return 0;
+        }
+
+        int plus = combinations(index-1, target+arr[index], arr);
+        int minus = combinations(index-1, target-arr[index], arr);
+        return plus + minus;
+    }
+}
