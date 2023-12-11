@@ -1,0 +1,69 @@
+import java.util.*;
+
+ 
+
+public class Solution {
+
+    static int minOperations(int i,int j,char[] a,char[] b,int[][] dp)
+
+    {
+
+        if(j<0) return i+1;
+
+        if(i<0) return j+1;
+
+ 
+
+        if(dp[i][j]!=-1) return dp[i][j];
+
+ 
+
+        if(a[i]==b[j])
+
+            return dp[i][j]=minOperations(i-1, j-1, a, b, dp);
+
+ 
+
+        int insert= minOperations(i,j-1,a,b,dp);
+
+        int delete=minOperations(i-1, j,a,b,dp);
+
+        int replace=minOperations(i-1, j-1,a,b,dp);
+
+ 
+
+        return dp[i][j]=1+Math.min(insert,Math.min(delete,replace));
+
+    }
+
+ 
+
+    public static int editDistance(String str1, String str2) {
+
+        //Your code goes here
+
+        int n=str1.length(), m=str2.length();
+
+        char[] a= str1.toCharArray();
+
+        char[] b=str2.toCharArray();
+
+ 
+
+        int[][] dp= new int[n][m];
+
+ 
+
+        for(int[] c:dp)
+
+            Arrays.fill(c,-1);
+
+ 
+
+        return minOperations(n-1, m-1, a, b, dp);
+
+ 
+
+    }
+
+}
