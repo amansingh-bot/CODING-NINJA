@@ -1,0 +1,51 @@
+import java.util.* ;
+
+import java.io.*; 
+
+ 
+
+public class Solution {
+
+ 
+
+    public static void bubbleSort(int[] arr, int n) {
+
+      for(int i=0; i < n-1; i++){ // Loop through the array.
+
+          boolean swapped = false; // Initialize a flag to track swaps.
+
+          for(int j=0; j < n-i-1; j++){ // Iterate through unsorted part of the array.
+
+              if(arr[j] > arr[j+1]){ // Compare adjacent elements.
+
+                  swap(arr, j, j+1); // Swap if out of order.
+
+                  swapped = true; // Set the swap flag.
+
+              }
+
+          }
+
+          if(!swapped){ // If no swaps in a pass, break; array is sorted.
+
+              break;
+
+          }
+
+      }
+
+    }
+
+ 
+
+    public static void swap(int arr[], int a, int b){
+
+        int temp = arr[a]; // Store value at index 'a'.
+
+        arr[a] = arr[b];   // Replace value at index 'a' with 'b'.
+
+        arr[b] = temp;     // Replace value at index 'b' with stored value.
+
+    }
+
+}
