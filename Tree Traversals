@@ -1,0 +1,58 @@
+import java.util.*;
+public class Solution {
+    public static List<List<Integer>> ans = new ArrayList<>();
+
+
+    public static List<Integer> InOrderSublist = new ArrayList<>();
+    
+    static List<Integer> getInOrder(TreeNode root){
+        
+        if(root == null) return InOrderSublist;
+        
+        getInOrder(root.left);
+        InOrderSublist.add(root.data);
+        getInOrder(root.right);
+
+
+        return InOrderSublist;
+    }
+
+
+    static List<Integer> PreOrderSublist = new ArrayList<>();
+    static List<Integer> getPreOrder(TreeNode root){
+        
+        if(root == null) return PreOrderSublist;
+        
+        PreOrderSublist.add(root.data);
+        getPreOrder(root.left);
+        getPreOrder(root.right);
+
+
+        return PreOrderSublist;
+    }
+
+
+    static List<Integer> PostOrderSublist = new ArrayList<>();
+    static List<Integer> getPostOrder(TreeNode root){
+        if(root == null) return PostOrderSublist;
+        
+        getPostOrder(root.left);
+        getPostOrder(root.right);
+        PostOrderSublist.add(root.data);
+
+
+        return PostOrderSublist;
+    }
+    public static List<List<Integer>> getTreeTraversal(TreeNode root) {
+        // Write your code here.
+        ans.add(getInOrder(root));        
+        ans.add(getPreOrder(root));
+        ans.add(getPostOrder(root));
+
+
+        return ans;
+
+
+        
+    }
+}
