@@ -1,0 +1,25 @@
+import java.util.* ;
+
+import java.io.*; 
+
+class Solution {
+
+    
+
+    public static void main(String args[]) {
+
+        
+
+        // Write code here
+
+        Scanner sc = new Scanner(System.in);
+
+        double a  = sc.nextInt();
+
+        double b  = sc.nextInt();
+
+        System.out.println((int)Math.pow(a,b));
+
+    }
+
+}
