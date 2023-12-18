@@ -1,0 +1,49 @@
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+    private static class Pair {
+        char ch;
+        int freq;
+        Pair(char ch, int freq) {
+            this.ch = ch;
+            this.freq = freq;
+        }
+    }
+    
+    public static String rearrangeString(String str) {
+        // Write your code here
+        PriorityQueue<Pair> pq = new PriorityQueue<Pair>((a, b) -> b.freq - a.freq);
+        
+        Map<Character, Integer> map = new HashMap();
+        
+        for(char ch: str.toCharArray()) {
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+        
+        for(Character key: map.keySet()) {
+            pq.add(new Pair(key, map.get(key)));
+        }
+        
+        char[] res = new char[str.length()];
+        int i = 0;
+        while(pq.size() > 0) {
+            Pair pair = pq.poll();
+            if(pair.freq > (str.length() + 1) / 2) {
+                return "NO SOLUTION";
+            }
+            
+            while(pair.freq > 0) {
+                if(i >= res.length) {
+                    i = 1;
+                }
+                res[i] = pair.ch;
+                i += 2;
+                pair.freq--;
+            }
+        }
+        
+        String ans = new String(res);
+        return ans;
+    }
+}
