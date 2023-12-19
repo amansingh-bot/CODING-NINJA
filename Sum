@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+ 
+
+public class Main {
+
+    
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int n = scanner.nextInt();
+
+ 
+
+        printEvenAndOdd(n);
+
+ 
+
+    }
+
+ 
+
+    private static void printEvenAndOdd(int n){
+
+        int evenSum = 0;
+
+        int oddSum = 0;
+
+ 
+
+        while(n != 0){
+
+            int rem = n%10;
+
+            if(rem%2 == 0){
+
+                evenSum = evenSum + rem;
+
+            }else{
+
+                oddSum = oddSum + rem;
+
+            }
+
+ 
+
+            n = n/10;
+
+            
+
+        }
+
+        
+
+        System.out.println(evenSum+" "+oddSum);
+
+ 
+
+    }
+
+}
+
