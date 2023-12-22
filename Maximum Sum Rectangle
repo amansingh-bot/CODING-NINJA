@@ -1,0 +1,77 @@
+import java.util.* ;
+
+import java.io.*; 
+
+public class Solution
+
+{
+
+public static int maxSumRectangle(int[][] arr, int n, int m)
+
+    {
+
+        // Write your code here.
+
+        int maxsum = Integer.MIN_VALUE;
+
+ 
+
+    for (int L = 0; L < m; L++) {
+
+        int[] temp = new int[n];
+
+ 
+
+        for (int R = L; R < m; R++) {
+
+            // Calculate temparray for the current column range [L, R]
+
+            for (int i = 0; i < n; i++) {
+
+                temp[i] += arr[i][R];
+
+            }
+
+ 
+
+            int currsum = 0;
+
+            int temp_start_index = 0;
+
+ 
+
+            for (int i = 0; i < n; i++) {
+
+                currsum += temp[i];
+
+ 
+
+                if (currsum > maxsum || (currsum < 0 && maxsum <= 0 && currsum > maxsum)) {
+
+                    maxsum = currsum;
+
+                }
+
+ 
+
+                if (currsum < 0) {
+
+                    currsum = 0;
+
+                    temp_start_index = i + 1;
+
+                }
+
+            }
+
+        }
+
+    }
+
+ 
+
+    return maxsum;
+
+    }
+
+}
