@@ -1,0 +1,89 @@
+public class Solution {
+
+    static class Info {
+
+        boolean isBST;
+
+        int size;
+
+        int min;
+
+        int max;
+
+ 
+
+        Info(boolean isBST, int size, int min, int max) {
+
+            this.isBST = isBST;
+
+            this.size = size;
+
+            this.min = min;
+
+            this.max = max;
+
+        }
+
+    }
+
+ 
+
+    static int maxSize = 0;
+
+ 
+
+    public static Info largestBSTInBT(TreeNode root) {
+
+        if (root == null) {
+
+            return new Info(true, 0, Integer.MAX_VALUE, Integer.MIN_VALUE);
+
+        }
+
+ 
+
+        Info leftInfo = largestBSTInBT(root.left);
+
+        Info rightInfo = largestBSTInBT(root.right);
+
+ 
+
+        int size = leftInfo.size + rightInfo.size + 1;
+
+        int currentMin = Math.min(root.data, Math.min(leftInfo.min, rightInfo.min));
+
+        int currentMax = Math.max(root.data, Math.max(leftInfo.max, rightInfo.max));
+
+ 
+
+        if (root.data > leftInfo.max && root.data < rightInfo.min) {
+
+            maxSize = Math.max(maxSize, size);
+
+            return new Info(true, size, currentMin, currentMax);
+
+        }
+
+        return new Info(false, size, 0, 0);
+
+    }
+
+ 
+
+    public static int largestBST(TreeNode root) {
+
+        if (root == null) {
+
+            return 0;
+
+        }
+
+        maxSize = 0;
+
+        largestBSTInBT(root);
+
+        return maxSize;
+
+    }
+
+}
