@@ -1,0 +1,28 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+    public static int focus(int p[],int d){
+      int players=1,currd=p[0];
+      for(int i=1;i<p.length;i++){
+        if(p[i]-currd>=d){
+          players++;
+          currd=p[i];
+        }
+      }
+      return players;
+    }
+    public static int chessTournament(int[] positions, int n,  int c) 
+	{
+        // Write your code here.   
+        Arrays.sort(positions);
+        int l=0,r=positions[n-1]-positions[0];
+        while(l<=r){
+         int mid=(l+r)/2;
+         if(focus(positions,mid)<c) r=mid-1;
+         else l=mid+1;
+        }
+        return r;
+    }
+
+}
