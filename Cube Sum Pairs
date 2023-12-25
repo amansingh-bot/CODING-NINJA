@@ -1,0 +1,31 @@
+import java.util.* ;
+
+import java.io.*; 
+
+public class Solution{
+
+    public static int countCubeSumPairs(int n) {
+
+        // Write your code here.
+
+        int count = 0;
+
+        for(int a = 0; a*a*a <= n; a++){
+
+            int rem = n - (a*a*a);
+
+            int cbRoot = (int)Math.cbrt(rem);
+
+            if(cbRoot > 0 && cbRoot*cbRoot*cbRoot == rem){
+
+                count++;
+
+            }
+
+        }
+
+        return count;
+
+    }
+
+}
