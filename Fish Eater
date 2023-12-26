@@ -1,0 +1,29 @@
+import java.util.* ;
+
+ import java.io.*; 
+
+ public class Solution{    
+
+ public static int fishEater(int[] fishes) {   
+
+     // Write your code here.    
+
+     int c=1;        
+
+ int max=fishes[0];    
+
+     for(int i=1;i<fishes.length;i++){      
+
+       if(fishes[i]>=max){        
+
+         c++;           
+
+      max=fishes[i];    
+
+         }      
+
+   }   
+
+      return c;    }
+
+ }
