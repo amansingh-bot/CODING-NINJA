@@ -1,0 +1,39 @@
+import java.util.*;
+
+ 
+
+public class Solution {
+
+    public static ArrayList<Integer> kthSmallLarge(ArrayList<Integer> arr, int n, int k) {
+
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
+
+        for (int num : arr) {
+
+            minHeap.add(num);
+
+            maxHeap.add(num);
+
+        }
+
+        while (k-- != 1) {
+
+            minHeap.poll();
+
+            maxHeap.poll();
+
+        }
+
+        ArrayList<Integer> ans = new ArrayList<>();
+
+        ans.add(minHeap.poll());
+
+        ans.add(maxHeap.poll());
+
+        return ans;
+
+    }
+
+}
