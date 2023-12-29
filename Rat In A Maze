@@ -1,0 +1,164 @@
+import java.util.*;
+
+import java.io.*;
+
+ 
+
+public class Solution {
+
+    public static boolean isPossible(int x, int y, int[][] visited, int[][] arr, int n) {
+
+        if ((x >= 0 && x < n) && (y >= 0 && y < n) && (visited[x][y] == 0) && (arr[x][y] == 1)) {
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+
+    }
+
+ 
+
+    public static void solve(int[][] arr, int n, ArrayList<String> ans, int x, int y, int[][] visited,
+
+            StringBuilder str) {
+
+        if (x == n - 1 && y == n - 1) {
+
+            ans.add(str.toString());
+
+            return;
+
+        }
+
+ 
+
+        visited[x][y] = 1;
+
+ 
+
+        // Down
+
+        int newx = x + 1;
+
+        int newy = y;
+
+        if (isPossible(newx, newy, visited, arr, n)) {
+
+            str.append('D');
+
+            solve(arr, n, ans, newx, newy, visited, str);
+
+            str.deleteCharAt(str.length() - 1);
+
+        }
+
+ 
+
+        // Left
+
+        newx = x;
+
+        newy = y - 1;
+
+        if (isPossible(newx, newy, visited, arr, n)) {
+
+            str.append('L');
+
+            solve(arr, n, ans, newx, newy, visited, str);
+
+            str.deleteCharAt(str.length() - 1);
+
+        }
+
+ 
+
+        // Right
+
+        newx = x;
+
+        newy = y + 1;
+
+        if (isPossible(newx, newy, visited, arr, n)) {
+
+            str.append('R');
+
+            solve(arr, n, ans, newx, newy, visited, str);
+
+            str.deleteCharAt(str.length() - 1);
+
+        }
+
+ 
+
+        // Up
+
+        newx = x - 1;
+
+        newy = y;
+
+        if (isPossible(newx, newy, visited, arr, n)) {
+
+            str.append('U');
+
+            solve(arr, n, ans, newx, newy, visited, str);
+
+            str.deleteCharAt(str.length() - 1);
+
+        }
+
+ 
+
+        visited[x][y] = 0;
+
+    }
+
+ 
+
+    public static ArrayList<String> findSum(int[][] arr, int n) {
+
+        ArrayList<String> ans = new ArrayList<>();
+
+        if (arr[0][0] == 0)
+
+            return ans;
+
+ 
+
+        int[][] visited = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+
+            for (int j = 0; j < n; j++) {
+
+                visited[i][j] = 0;
+
+            }
+
+        }
+
+ 
+
+        int srcx = 0;
+
+        int srcy = 0;
+
+ 
+
+        StringBuilder str = new StringBuilder("");
+
+ 
+
+        solve(arr, n, ans, srcx, srcy, visited, str);
+
+ 
+
+        return ans;
+
+    }
+
+}
+
