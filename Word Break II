@@ -1,0 +1,43 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static ArrayList<String> wordBreak(String s, ArrayList<String> dictionary) {
+		HashSet<String> hash = new HashSet<>();
+		for(String wrd : dictionary)
+			hash.add(wrd);
+
+		ArrayList<String> ans= new ArrayList<>();
+		generate(new StringBuilder(),s,hash,ans);
+
+		return ans;
+	}
+
+	public static void generate(StringBuilder str , String s , HashSet<String> hash , ArrayList<String> ans)
+	{
+		if(s.length()==0)
+		{
+			str.deleteCharAt(str.length()-1);
+			ans.add(new StringBuilder(str).toString());
+			return;
+		}
+
+		StringBuilder word = new StringBuilder();
+
+		for(int i=0;i<s.length();i++)
+		{
+			char ch = s.charAt(i);
+			word.append(ch);
+
+			if(hash.contains(word.toString()))
+			{
+				str.append(word+" ");
+				generate(str,s.substring(i+1),hash,ans);
+				int del = str.lastIndexOf(word.toString());
+				str.delete(del,str.length());
+			}
+		}
+	}
+}
