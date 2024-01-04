@@ -1,0 +1,87 @@
+import java.util.ArrayList;
+
+public class Solution {
+
+public static int differentGCDSubsequence(ArrayList<Integer> arr) {
+
+  // Write your code here.
+
+  int maxNum = findMaxNumber(arr); 
+
+   int len = maxNum+1;
+
+ boolean[] numExist = new boolean[len];
+
+ for (int i: arr) { 
+
+  numExist[i] = true; 
+
+ }
+
+ 
+
+ int gcdCount = 0;
+
+ for (int gcd=1;gcd<=maxNum;gcd++) { 
+
+  if (searchGCD(numExist,gcd)) {
+
+    gcdCount++; 
+
+  } 
+
+ } 
+
+ return gcdCount; 
+
+}
+
+ 
+
+static boolean searchGCD(boolean[] numExist,int gcd) {
+
+  int calculateGCD=0; 
+
+ for (int num=gcd;num<numExist.length;num+=gcd) {
+
+   if (numExist[num]) {
+
+    calculateGCD = getGCD(calculateGCD,num); 
+
+  } 
+
+  if (calculateGCD==gcd) 
+
+   return true;
+
+  } 
+
+ return false;
+
+ } 
+
+static int getGCD(int a,int b) { 
+
+   if (b==0)  
+
+       return a;
+
+  return getGCD(b,a%b); 
+
+}
+
+static int findMaxNumber(ArrayList<Integer> arr) {
+
+  int maxNum = 0; 
+
+ for (int i: arr) { 
+
+  maxNum = Math.max(maxNum,i);
+
+  } 
+
+ return maxNum;
+
+ }
+
+ }
