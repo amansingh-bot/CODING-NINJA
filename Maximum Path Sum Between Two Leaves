@@ -1,0 +1,45 @@
+public class Solution {
+
+    public static long maxi = -1;
+
+    public static long helper(TreeNode root, long[] maxValue) {
+
+        if(root == null) return 0;
+
+        if(root.left == null && root.right == null) return root.data;
+
+        
+
+        long ls = helper(root.left, maxValue);
+
+        long rs = helper(root.right, maxValue);
+
+        
+
+        if(root.left != null && root.right != null){
+
+            maxValue[0] = Math.max(maxValue[0], ls + rs + root.data);
+
+            return root.data + Math.max(ls,rs);
+
+        }
+
+        return (root.left != null) ? ls + root.data : rs + root.data;
+
+    }
+
+ 
+
+    public static long findMaxSumPath(TreeNode root) {
+
+        long maxValue[] = new long[1];
+
+        maxValue[0] = -1;
+
+        helper(root, maxValue);
+
+        return maxValue[0];
+
+    }
+
+}
